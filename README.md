@@ -49,6 +49,16 @@ This allows you to not worry about the starting state, just care about where it 
 Several extensions exist to do this for you. `MoveTo`, `ScaleTo` `FadeTo` etc. all just make a delegate animation so at play time, the from will be the current state it's in.
 
 #### Easing
+The easing paramater defaults to a linear ease, but you can pass any function you want into it with the following signature
+`Func<float, float>`. This library comes with several built-in ones; the most common ones found [here](https://easings.net).
+
+They are all under the ease class with nested classes/functions for each type.
+ 
+ Example:
+Scale from 0f to 1f, over half a second using [back-out easing](https://easings.net/#easeOutBack)
+```c#
+transform.Scale(0f, 1f, 0.5f, Ease.Back.Out)
+```
 
 ### Playing Tweens
 **Examples of play**
