@@ -61,13 +61,39 @@ transform.Scale(0f, 1f, 0.5f, Ease.Back.Out)
 ```
 
 ### Playing Tweens
-**Examples of play**
-**Show callbacks**
+Once you have created one, playing a tween is easy
+```c#
+tween.Play();
+```
+
+You can also pass in a callback for when the tween completes
+```c#
+tween.Play(() => { Debug.Log("It's complete"); });
+```
 
 ### TweenCollections
-**Sequences**
-**Parallel**
-**Extension Methods**
+There are 2 types of animation collections, a `SequencedAnimation` for creating a sequence of tweens and `ParalleledAnimation` for playing tweens in parallel.
+
+Both are types of `AnimationCollection`.
+
+You can create either of these collections using a fluent interface.
+There are extension methods for every type of tween. As well as an `Add` function for adding any Tween.
+
+```c#
+var sequence = new SequencedAnimation()
+    // Use extension methods
+    .FadeTo(spriteRenderer, 1f)
+    .Scale(transform, 0, 1f, 0.24, Ease.Back.Out)
+    // Or use a paralleled within the sequence
+    .Parallel(p => p
+        // thse are nested within the parallel
+        .Move(transform, positionA, positionB)
+        .RotateY(transform, 0, 360))
+    // or just use add
+    .Add(new MoveAnimation(target, from, to, duration)
+```
+
+ParalleledAnimations are created in the same way.
 
 ### Advanced playback features
 **Repeat Count**
