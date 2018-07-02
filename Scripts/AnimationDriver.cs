@@ -1,5 +1,4 @@
 using System;
-using DUCK.Utils;
 using UnityEngine;
 
 namespace DUCK.Tween

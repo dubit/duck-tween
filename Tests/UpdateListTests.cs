@@ -1,8 +1,7 @@
 ﻿using System;
-using DUCK.Utils;
 using NUnit.Framework;
 
-namespace DUCK.Utils.Editor
+namespace DUCK.Tween.Tests
 {
 	[TestFixture]
 	public class UpdateListTest

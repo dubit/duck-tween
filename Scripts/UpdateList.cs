@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DUCK.Utils
+namespace DUCK.Tween
 {
 	/// <summary>
 	/// UpdateList: allows you to add multiple update functions to a list, then just update the list and all functions
