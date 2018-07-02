@@ -48,8 +48,7 @@ This allows you to not worry about the starting state, just care about where it 
 
 Several extensions exist to do this for you. `MoveTo`, `ScaleTo` `FadeTo` etc. all just make a delegate animation so at play time, the from will be the current state it's in.
 
-#### Easings
-(#easings)
+#### Easing
 
 ### Playing Tweens
 **Examples of play**
