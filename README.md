@@ -71,6 +71,8 @@ You can also pass in a callback for when the tween completes
 tween.Play(() => { Debug.Log("It's complete"); });
 ```
 
+**Play(repeatCount)**
+
 ### TweenCollections
 There are 2 types of animation collections, a `SequencedAnimation` for creating a sequence of tweens and `ParalleledAnimation` for playing tweens in parallel.
 
@@ -96,10 +98,31 @@ var sequence = new SequencedAnimation()
 ParalleledAnimations are created in the same way.
 
 ### Advanced playback features
-**Repeat Count**
+**Abort**
+**FastForward**
 **Reverse** 
 **Change Speed**
 **Scale Time**
 
 ### AnimationDrivers
-**Animation Driver**
+The updates for tweens are driven by animation drivers. 
+
+An animation driver is just an instance of class that implements `IAnimationDriver`. This interface just requires 2 functions, `Add(Func<float> update)` and `Remove(Func<float> update)`. This allows tweens to add and remove their update functions as they need. Once added the animation driver will call those update functions every frame, passing in the delta time.
+
+The system uses `DefaultAnimationDriver` out of the box passing in `Time.unscaledDeltaTime`.
+
+You can override the default driver like this:
+```c#
+TimedAnimation.DefaultDriver = myCustomAnimationDriver;
+```
+Now every new tween created after this assignment will use your driver by default.
+
+You can also override the driver per tween for even more control like this:
+```c#
+var tween = new MoveAnimation(transform, startPos, endPos);
+tween.AnimationDriver = myCustomAnimationDriver;
+```
+You cannot change the animation driver during playback, it must be assigned before playing.
+
+
+ 
