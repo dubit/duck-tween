@@ -1,0 +1,14 @@
+{
+    "name": "DUCK.Tween.Tests",
+    "references": [
+        "Tween"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
