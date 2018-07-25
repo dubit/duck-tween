@@ -98,11 +98,26 @@ var sequence = new SequencedAnimation()
 ParalleledAnimations are created in the same way.
 
 ### Advanced playback features
-**Abort**
-**FastForward**
-**Reverse** 
-**Change Speed**
-**Scale Time**
+
+**Abort()**
+
+A tween can be aborted during playback by calling the abort function. The objects will be left in whatever state they are in when the tween is aborted.
+
+**FastForward()**
+
+A tween can also be fast forwarded to the end. This effectively immediately stops the tween and fires the final update frame, so the objects are left in a state equivelant to how they would be if the tween had completed.
+
+**Reverse()**
+
+Calling reverse will put the tween in reverse. It can be used prior to or during playback. If reversed it will cause the animation to play in reverse. For sequenced collections, it will play the animations in reverse order
+
+**ChangeSpeed(float multiplier)**
+
+Change speed will change the animations speed by a multiplier. For example `ChangeSpeed(2.0f)` will double the speed of the animation. The effects are permanent and therefore cumulative, so calling `ChangeSpeed(2.0f)` twice will result in the animation now being 4 times as fast as the original.
+
+**ScaleTime(float duration)**
+
+Scale time allows you to change the duration of an animation. This will end up changing the speed.
 
 ### AnimationDrivers
 The updates for tweens are driven by animation drivers. 
