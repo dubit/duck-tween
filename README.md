@@ -117,7 +117,7 @@ Change speed will change the animations speed by a multiplier. For example `Chan
 
 **ScaleTime(float duration)**
 
-Scale time allows you to change the duration of an animation. This will end up changing the speed.
+Scale time allows you to change the duration of an animation. This will end up changing the speed. If this is called during playback the progress is maintained. Example. If you are 60% of the way through a 1s animation (elapsed time = 0.6f), and then call `ScaleTime(2f)`. The animation is now 2 seconds long and the progress will remain at 60%, and elapsed time will change to 1.2f. (60% of 2s). The animation therefore will not jump ot a different point, and will still be smooth.
 
 ### AnimationDrivers
 The updates for tweens are driven by animation drivers. 
