@@ -21,7 +21,7 @@ namespace DUCK.Tween.Easings
 
 			public static float Sine(float x)
 			{
-				return (Mathf.Sin(x * PI2) + 1.0f) * 0.5f;
+				return (Mathf.Cos(x * PI2 + Mathf.PI) + 1f) * 0.5f;
 			}
 		}
 	}
