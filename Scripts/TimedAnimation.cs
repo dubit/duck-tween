@@ -129,7 +129,10 @@ namespace DUCK.Tween
 			// Set the animation state to its final form
 			CurrentTime = Duration;
 			Refresh(Progress);
-			AnimationDriver.Remove(Update);
+			if (IsPlaying)
+			{
+				AnimationDriver.Remove(Update);
+			}
 			base.FastForward();
 		}
 
