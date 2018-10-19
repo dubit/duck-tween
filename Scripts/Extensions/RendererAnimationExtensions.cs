@@ -62,5 +62,34 @@ namespace DUCK.Tween.Extensions
 				new RendererFadeAnimation(renderer, renderer.material.color.a, to, duration, easingFunction));
 			return animation;
 		}
+
+		/// <summary>
+		/// Creates a new SpriteRendererFadeAnimation using this renderer
+		/// </summary>
+		/// <param name="renderer">The renderer that will be the target of the animation</param>
+		/// <param name="from">The start alpha value of the fade</param>
+		/// <param name="to">The end alpha value of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>The RendererFadeAnimation created</returns>
+		public static SpriteRendererFadeAnimation Fade(this SpriteRenderer renderer, float from, float to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return new SpriteRendererFadeAnimation(renderer, from, to, duration, easingFunction);
+		}
+
+		/// <summary>
+		/// Creates a new SpriteRendererFadeAnimation (in a DelegateAnimation) using this renderer
+		/// </summary>
+		/// <param name="renderer">The renderer that will be the target of the animation</param>
+		/// <param name="to">The end alpha value of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>A DelegateAnimation which contains the RendererFadeAnimation</returns>
+		public static DelegateAnimation<SpriteRendererFadeAnimation> FadeTo(this SpriteRenderer renderer, float to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			var animation = new DelegateAnimation<SpriteRendererFadeAnimation>(() =>
+				new SpriteRendererFadeAnimation(renderer, renderer.color.a, to, duration, easingFunction));
+			return animation;
+		}
 	}
 }

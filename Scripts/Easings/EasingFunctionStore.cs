@@ -43,7 +43,9 @@ namespace DUCK.Tween.Easings
 				{"Sine.In", Ease.Sine.In},
 				{"Sine.Out", Ease.Sine.Out},
 				{"Sine.InOut", Ease.Sine.InOut},
-				{"Parabola", Ease.Parabola}
+				{"PingPong.Linear", Ease.PingPong.Linear},
+				{"PingPong.Parabola", Ease.PingPong.Parabola},
+				{"PingPong.Sine", Ease.PingPong.Sine}
 			};
 		}
 	}
