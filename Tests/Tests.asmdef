@@ -1,7 +1,7 @@
 {
-    "name": "DUCK.Tween.Tests",
+    "name": "Duck.Tween.Tests",
     "references": [
-        "Tween"
+        "Duck.Tween"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
