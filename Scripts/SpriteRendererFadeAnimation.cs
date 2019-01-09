@@ -6,7 +6,7 @@ namespace DUCK.Tween
 	/// <summary>
 	/// A SpriteRendererFadeAnimation is used to animate the alpha of a Sprite Renderer over time
 	/// </summary>
-	public class SpriteRendererFadeAnimation : AbstractFadeAnimation
+	public class SpriteRendererFadeAnimation : AbstractFloatAnimation
 	{
 		private readonly SpriteRenderer renderer;
 
@@ -24,7 +24,7 @@ namespace DUCK.Tween
 			renderer = target;
 		}
 
-		protected override void SetAlpha(float alpha)
+		protected override void SetValue(float alpha)
 		{
 			var color = renderer.color;
 			color.a = alpha;
