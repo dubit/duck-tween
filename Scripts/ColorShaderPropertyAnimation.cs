@@ -21,14 +21,12 @@ namespace DUCK.Tween
 		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
 		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
 		public ColorShaderPropertyAnimation(Renderer target, string propertyName,  Color from, Color to, float duration = 1f, Func<float, float> easingFunction = null)
-			: base(target.gameObject, from, to, duration, easingFunction)
+			: this(target, Shader.PropertyToID(propertyName), from, to, duration, easingFunction)
 		{
-			renderer = target;
-			shaderPropertyID = Shader.PropertyToID(propertyName);
 		}
 
 		/// <summary>
-		/// Creates a new RendererColorFadeAnimation using an ID for the property name
+		/// Creates a new RendererColorFadeAnimation using an ID for the property.
 		/// </summary>
 		/// <param name="target">The renderer that will be the target of the animation</param>
 		/// <param name="propertyID">The ID of the shader property that will changed through the animation</param>
