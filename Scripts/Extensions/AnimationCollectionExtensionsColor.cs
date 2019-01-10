@@ -38,6 +38,68 @@ namespace DUCK.Tween.Extensions
 		}
 
 		/// <summary>
+		/// Adds a ColorFadeAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's color will be faded</param>
+		/// <param name="shaderProperty">The name of the target shader property</param>
+		/// <param name="from">The start color of the fade</param>
+		/// <param name="to">The end color of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection ColorFade(this AnimationCollection animationCollection, Renderer renderer, string shaderProperty, Color from, Color to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.ColorFade(shaderProperty, from, to, duration, easingFunction));
+		}
+
+		/// <summary>
+		/// Adds a ColorFadeToAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's color will be faded</param>
+		/// <param name="shaderProperty">The name of the target shader property</param>
+		/// <param name="to">The end color of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection ColorFadeTo(this AnimationCollection animationCollection, Renderer renderer, string shaderProperty, Color to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.ColorFadeTo(shaderProperty, to, duration, easingFunction));
+		}
+
+		/// <summary>
+		/// Adds a ColorFadeAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's color will be faded</param>
+		/// <param name="shaderPropertyID">The ID of the target shader property</param>
+		/// <param name="from">The start color of the fade</param>
+		/// <param name="to">The end color of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection ColorFade(this AnimationCollection animationCollection, Renderer renderer, int shaderPropertyID, Color from, Color to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.ColorFade(shaderPropertyID, from, to, duration, easingFunction));
+		}
+
+		/// <summary>
+		/// Adds a ColorFadeToAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's color will be faded</param>
+		/// <param name="shaderPropertyID">The ID of the target shader property</param>
+		/// <param name="to">The end color of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection ColorFadeTo(this AnimationCollection animationCollection, Renderer renderer, int shaderPropertyID, Color to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.ColorFadeTo(shaderPropertyID, to, duration, easingFunction));
+		}
+
+		/// <summary>
 		/// Adds a FadeAnimation to the animation collection
 		/// </summary>
 		/// <param name="animationCollection">The animation collection to add to</param>
@@ -52,6 +114,7 @@ namespace DUCK.Tween.Extensions
 			return animationCollection.Add(renderer.Fade(from, to, duration, easingFunction));
 		}
 
+
 		/// <summary>
 		/// Adds a FadeToAnimation to the animation collection
 		/// </summary>
@@ -64,6 +127,69 @@ namespace DUCK.Tween.Extensions
 		public static AnimationCollection FadeTo(this AnimationCollection animationCollection, Renderer renderer, float to, float duration = 1f, Func<float, float> easingFunction = null)
 		{
 			return animationCollection.Add(renderer.FadeTo(to, duration, easingFunction));
+		}
+
+		/// <summary>
+		/// Adds a FadeAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's alpha will be faded</param>
+		/// <param name="shaderProperty">The name of the target shader property</param>
+		/// <param name="from">The start alpha value of the fade</param>
+		/// <param name="to">The end alpha value of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection Fade(this AnimationCollection animationCollection, Renderer renderer, string shaderProperty, float from, float to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.Fade(shaderProperty, from, to, duration, easingFunction));
+		}
+
+		/// <summary>
+		/// Adds a FadeToAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's alpha will be faded</param>
+		/// <param name="shaderProperty">The name of the target shader property</param>
+		/// <param name="to">The end alpha value of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection FadeTo(this AnimationCollection animationCollection, Renderer renderer, string shaderProperty, float to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.FadeTo(shaderProperty, to, duration, easingFunction));
+		}
+
+				/// <summary>
+		/// Adds a FadeAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's alpha will be faded</param>
+		/// <param name="shaderPropertyID">The ID of the target shader property</param>
+		/// <param name="from">The start alpha value of the fade</param>
+		/// <param name="to">The end alpha value of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection Fade(this AnimationCollection animationCollection, Renderer renderer, int shaderPropertyID, float from, float to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.Fade(shaderPropertyID, from, to, duration, easingFunction));
+		}
+
+
+		/// <summary>
+		/// Adds a FadeToAnimation to the animation collection
+		/// </summary>
+		/// <param name="animationCollection">The animation collection to add to</param>
+		/// <param name="renderer">The renderer who's alpha will be faded</param>
+		/// <param name="shaderPropertyID">The ID of the target shader property</param>
+		/// <param name="to">The end alpha value of the fade</param>
+		/// <param name="duration">The duration of the animation in seconds, defaults to 1f</param>
+		/// <param name="easingFunction">The easing function that will be used to interpolate with</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection FadeTo(this AnimationCollection animationCollection, Renderer renderer, int shaderPropertyID, float to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(renderer.FadeTo(shaderPropertyID, to, duration, easingFunction));
 		}
 
 		/// <summary>

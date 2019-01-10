@@ -4,7 +4,7 @@ using UnityEngine;
 namespace DUCK.Tween
 {
 	/// <summary>
-	/// A RendererColorFadeAnimation is used to animate the color of a Renderer over time
+	/// A ColorShaderPropertyAnimation is used to animate the color of a specific color shader property over time
 	/// </summary>
 	public class ColorShaderPropertyAnimation : AbstractColorFadeAnimation
 	{
@@ -12,7 +12,7 @@ namespace DUCK.Tween
 		private readonly int shaderPropertyID;
 
 		/// <summary>
-		/// Creates a new RendererColorFadeAnimation using a string for the property name
+		/// Creates a new ColorShaderPropertyAnimation using a string for the property name
 		/// </summary>
 		/// <param name="target">The renderer that will be the target of the animation</param>
 		/// <param name="propertyName">The name of the shader property that will changed through the animation</param>
@@ -26,7 +26,7 @@ namespace DUCK.Tween
 		}
 
 		/// <summary>
-		/// Creates a new RendererColorFadeAnimation using an ID for the property.
+		/// Creates a new ColorShaderPropertyAnimation using an ID for the property.
 		/// </summary>
 		/// <param name="target">The renderer that will be the target of the animation</param>
 		/// <param name="propertyID">The ID of the shader property that will changed through the animation</param>
