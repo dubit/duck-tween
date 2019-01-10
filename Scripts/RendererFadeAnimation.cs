@@ -6,7 +6,7 @@ namespace DUCK.Tween
 	/// <summary>
 	/// A RendererFadeAnimation is used to animate the alpha of a Renderer over time
 	/// </summary>
-	public class RendererFadeAnimation : AbstractFadeAnimation
+	public class RendererFadeAnimation : AbstractFloatAnimation
 	{
 		private readonly Renderer renderer;
 
@@ -24,7 +24,7 @@ namespace DUCK.Tween
 			renderer = target;
 		}
 
-		protected override void SetAlpha(float alpha)
+		protected override void SetValue(float alpha)
 		{
 			var color = renderer.material.color;
 			color.a = alpha;

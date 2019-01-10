@@ -7,7 +7,7 @@ namespace DUCK.Tween
 	/// <summary>
 	/// A UIFadeAnimation is used to animate the alpha of a CanvasGroup or Graphic over time
 	/// </summary>
-	public class UIFadeAnimation : AbstractFadeAnimation
+	public class UIFadeAnimation : AbstractFloatAnimation
 	{
 		private readonly CanvasGroup canvasGroup;
 		private readonly Graphic graphic;
@@ -40,7 +40,7 @@ namespace DUCK.Tween
 			graphic = target;
 		}
 
-		protected override void SetAlpha(float alpha)
+		protected override void SetValue(float alpha)
 		{
 			if (canvasGroup)
 			{
