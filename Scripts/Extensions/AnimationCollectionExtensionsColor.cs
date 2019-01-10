@@ -160,7 +160,7 @@ namespace DUCK.Tween.Extensions
 			return animationCollection.Add(renderer.FadeTo(shaderProperty, to, duration, easingFunction));
 		}
 
-				/// <summary>
+		/// <summary>
 		/// Adds a FadeAnimation to the animation collection
 		/// </summary>
 		/// <param name="animationCollection">The animation collection to add to</param>
