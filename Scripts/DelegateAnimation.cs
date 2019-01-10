@@ -141,6 +141,61 @@ namespace DUCK.Tween
 		{
 			base.Play(onComplete, onAbort);
 
+			if (CreateDelegateAnimation())
+			{
+				Animation.Play(NotifyAnimationComplete, base.Abort);
+			}
+			else
+			{
+				base.Abort();
+			}
+		}
+
+		public override void Abort()
+		{
+			if (Animation != null)
+			{
+				Animation.Abort();
+			}
+		}
+
+		public override void FastForward()
+		{
+			if (Animation != null)
+			{
+				Animation.FastForward();
+			}
+			else if (CreateDelegateAnimation())
+			{
+				Animation.FastForward();
+			}
+			base.FastForward();
+		}
+
+		public override void Pause()
+		{
+			base.Pause();
+			if (Animation != null)
+			{
+				Animation.Pause();
+			}
+		}
+
+		public override void Resume()
+		{
+			base.Resume();
+			if (Animation != null)
+			{
+				Animation.Resume();
+			}
+			else
+			{
+				Debug.LogError("DelegateAnimation: You cannot resume this animation because you haven't started your delegate animation yet!");
+			}
+		}
+
+		private bool CreateDelegateAnimation()
+		{
 			try
 			{
 				Animation = animationCreationFunction();
@@ -166,14 +221,7 @@ namespace DUCK.Tween
 					OnAnimationCreated.Invoke(Animation);
 				}
 
-				if (Animation.IsValid)
-				{
-					Animation.Play(NotifyAnimationComplete, base.Abort);
-				}
-				else
-				{
-					base.Abort();
-				}
+				return Animation.IsValid;
 			}
 			catch (MissingReferenceException e)
 			{
@@ -186,49 +234,8 @@ namespace DUCK.Tween
 				Debug.LogError("DelegateAnimation: Cannot create your animation!");
 				throw;
 			}
-		}
 
-		public override void Abort()
-		{
-			if (Animation != null)
-			{
-				Animation.Abort();
-			}
-		}
-
-		public override void FastForward()
-		{
-			if (Animation != null)
-			{
-				Animation.FastForward();
-			}
-			else
-			{
-				Debug.LogError("DelegateAnimation: You cannot fast forward because you haven't started your delegate animation yet!");
-			}
-			base.FastForward();
-		}
-
-		public override void Pause()
-		{
-			base.Pause();
-			if (Animation != null)
-			{
-				Animation.Pause();
-			}
-		}
-
-		public override void Resume()
-		{
-			base.Resume();
-			if (Animation != null)
-			{
-				Animation.Resume();
-			}
-			else
-			{
-				Debug.LogError("DelegateAnimation: You cannot resume this animation because you haven't started your delegate animation yet!");
-			}
+			return false;
 		}
 	}
 }
