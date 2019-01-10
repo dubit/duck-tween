@@ -6,6 +6,7 @@ namespace DUCK.Tween
 	/// <summary>
 	/// A RendererColorFadeAnimation is used to animate the color of a Renderer over time
 	/// </summary>
+	[Obsolete("Use ColorShaderPropertyAnimation instead.")]
 	public class RendererColorFadeAnimation : AbstractColorFadeAnimation
 	{
 		private readonly Renderer renderer;

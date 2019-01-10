@@ -12,7 +12,7 @@ namespace DUCK.Tween
 		private readonly int shaderPropertyID;
 
 		/// <summary>
-		/// Creates a new RendererColorFadeAnimation using a string for the property name
+		/// Creates a new FloatShaderPropertyAnimation using a string for the property name
 		/// </summary>
 		/// <param name="target">The renderer that will be the target of the animation</param>
 		/// <param name="propertyName">The name of the shader property that will changed through the animation</param>
@@ -26,7 +26,7 @@ namespace DUCK.Tween
 		}
 
 		/// <summary>
-		/// Creates a new RendererColorFadeAnimation
+		/// Creates a new FloatShaderPropertyAnimation
 		/// </summary>
 		/// <param name="target">The renderer that will be the target of the animation</param>
 		/// <param name="propertyID">The ID of the shader property that will changed through the animation</param>
