@@ -103,7 +103,8 @@ namespace DUCK.Tween
 				}
 
 				base.Play(onComplete, onAbort);
-				Refresh(CurrentTime = IsReversed ? Duration : 0f);
+				CurrentTime = IsReversed ? Duration : 0f;
+				Refresh(Progress);
 			}
 			else
 			{
