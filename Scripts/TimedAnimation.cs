@@ -17,12 +17,7 @@ namespace DUCK.Tween
 		/// You can assign a customised Animation Driver to replace the default one.
 		/// You can also set it to null -- and it will force the animation using the default driver from DUCK.
 		/// </summary>
-		public static IAnimationDriver DefaultDriver
-		{
-			get => defaultDriver;
-			set => defaultDriver = value;
-		}
-		private static IAnimationDriver defaultDriver = DefaultAnimationDriver.Instance;
+		public static IAnimationDriver DefaultDriver { get; set; } = DefaultAnimationDriver.Instance;
 
 		public IAnimationDriver AnimationDriver
 		{
