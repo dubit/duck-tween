@@ -17,25 +17,24 @@ namespace DUCK.Tween
 		/// You can assign a customised Animation Driver to replace the default one.
 		/// You can also set it to null -- and it will force the animation using the default driver from DUCK.
 		/// </summary>
-		public static IAnimationDriver DefaultDriver { get { return defaultDriver; } set { defaultDriver = value; } }
-		private static IAnimationDriver defaultDriver = DefaultAnimationDriver.Instance;
+		public static IAnimationDriver DefaultDriver { get; set; } = DefaultAnimationDriver.Instance;
 
 		public IAnimationDriver AnimationDriver
 		{
-			get { return animationDriver ?? (animationDriver = DefaultDriver ?? DefaultAnimationDriver.Instance); }
-			set { animationDriver = value; }
+			get => animationDriver ?? (animationDriver = DefaultDriver ?? DefaultAnimationDriver.Instance);
+			set => animationDriver = value;
 		}
 		private IAnimationDriver animationDriver;
 
 		/// <summary>
 		/// The target gameobject of the this animation
 		/// </summary>
-		public GameObject TargetObject { get; private set; }
+		public GameObject TargetObject { get; }
 
 		/// <summary>
 		/// The RectTransform of the target game object, null if it doesn't have one
 		/// </summary>
-		public RectTransform TargetRectTransform { get; private set; }
+		public RectTransform TargetRectTransform { get; }
 
 		/// <summary>
 		/// The duration of the timed animation
@@ -43,8 +42,8 @@ namespace DUCK.Tween
 		/// </summary>
 		public float Duration
 		{
-			get { return duration; }
-			set { duration = Mathf.Max(0f, value); }
+			get => duration;
+			set => duration = Mathf.Max(0f, value);
 		}
 		private float duration;
 
@@ -58,12 +57,12 @@ namespace DUCK.Tween
 		/// </summary>
 		public bool IsReversed { get; private set; }
 
-		public override bool IsValid { get { return TargetObject != null || TargetRectTransform != null; } }
+		public override bool IsValid => TargetObject != null || TargetRectTransform != null;
 
 		private readonly Func<float, float> easingFunction;
 
-		private bool IsComplete { get { return IsReversed ? Progress <= 0f : Progress >= 1f; } }
-		private float Progress { get { return Mathf.Clamp01(CurrentTime / Duration); } }
+		private bool IsComplete => IsReversed ? Progress <= 0f : Progress >= 1f;
+		private float Progress => Mathf.Clamp01(CurrentTime / Duration);
 
 		protected TimedAnimation() {}
 
@@ -103,7 +102,8 @@ namespace DUCK.Tween
 				}
 
 				base.Play(onComplete, onAbort);
-				Refresh(CurrentTime = IsReversed ? Duration : 0f);
+				CurrentTime = IsReversed ? Duration : 0f;
+				Refresh(Progress);
 			}
 			else
 			{
