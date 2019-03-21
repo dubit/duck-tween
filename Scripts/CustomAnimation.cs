@@ -9,13 +9,13 @@ namespace DUCK.Tween
 	public class CustomAnimation : TimedAnimation
 	{
 		public float CurrentValue { get; private set; }
-		public float From { get; private set; }
-		public float To { get; private set; }
+		public float From { get; set; }
+		public float To { get; set; }
 
 		/// <summary>
 		/// Custom Animation is always true because customUpdate cannot be null
 		/// </summary>
-		public override bool IsValid { get { return true; } }
+		public override bool IsValid => true;
 
 		private readonly Action<float> customUpdate;
 
@@ -31,11 +31,7 @@ namespace DUCK.Tween
 		public CustomAnimation(Action<float> customUpdate, float from = 0, float to = 1.0f, float duration = 1.0f, Func<float, float> easingFunction = null)
 			: base((GameObject)null, duration, easingFunction)
 		{
-			if (customUpdate == null)
-			{
-				throw new ArgumentNullException("customUpdate");
-			}
-			this.customUpdate = customUpdate;
+			this.customUpdate = customUpdate ?? throw new ArgumentNullException(nameof(customUpdate));
 			From = from;
 			To = to;
 		}
@@ -51,15 +47,15 @@ namespace DUCK.Tween
 	/// </summary>
 	public class CustomAnimation<T> : TimedAnimation
 	{
-		public T Target { get; private set; }
+		public T Target { get; }
 		public float CurrentValue { get; private set; }
-		public float From { get; private set; }
-		public float To { get; private set; }
+		public float From { get; set; }
+		public float To { get; set; }
 
 		/// <summary>
 		/// Custom Animation is always true because customUpdate cannot be null
 		/// </summary>
-		public override bool IsValid { get { return Target != null; } }
+		public override bool IsValid => Target != null;
 
 		private readonly Action<T, float> customUpdate;
 
@@ -78,14 +74,10 @@ namespace DUCK.Tween
 		{
 			if (target == null)
 			{
-				throw new ArgumentNullException("target");
-			}
-			if (customUpdate == null)
-			{
-				throw new ArgumentNullException("customUpdate");
+				throw new ArgumentNullException(nameof(target));
 			}
 			Target = target;
-			this.customUpdate = customUpdate;
+			this.customUpdate = customUpdate ?? throw new ArgumentNullException(nameof(customUpdate));
 			From = from;
 			To = to;
 		}
