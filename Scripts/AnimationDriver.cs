@@ -31,7 +31,7 @@ namespace DUCK.Tween
 
 		private static T CreateInstance()
 		{
-			var gameObject = new GameObject { hideFlags = HideFlags.HideInHierarchy };
+			var gameObject = new GameObject();//{ hideFlags = HideFlags.HideInHierarchy };
 			//NOTE When running tests you cannot use DontDestroyOnLoad in editor mode
 			if (Application.isPlaying)
 			{
@@ -55,11 +55,11 @@ namespace DUCK.Tween
 	{
 		private void Update()
 		{
-			updateList.Update(Time.unscaledTime);
+			updateList.Update(Time.deltaTime);
 		}
 	}
 
-	public class ScaledAnimationDriver : BaseAnimationDriver<UnscaledAnimationDriver>
+	public class ScaledAnimationDriver : BaseAnimationDriver<ScaledAnimationDriver>
 	{
 		private void Update()
 		{
