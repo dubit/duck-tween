@@ -21,14 +21,15 @@ namespace DUCK.Tween
 		void Remove(Action<float> updateFunction);
 	}
 
-	public class DefaultAnimationDriver : MonoBehaviour, IAnimationDriver
+	public class BaseAnimationDriver<T> : MonoBehaviour, IAnimationDriver
+		where T : BaseAnimationDriver<T>
 	{
-		public static DefaultAnimationDriver Instance { get { return instance == null ? CreateInstance() : instance; } }
-		private static DefaultAnimationDriver instance;
+		public static T Instance { get { return instance == null ? CreateInstance() : instance; } }
+		private static T instance;
 
-		private static readonly UpdateList updateList = new UpdateList();
+		protected static readonly UpdateList updateList = new UpdateList();
 
-		private static DefaultAnimationDriver CreateInstance()
+		private static T CreateInstance()
 		{
 			var gameObject = new GameObject { hideFlags = HideFlags.HideInHierarchy };
 			//NOTE When running tests you cannot use DontDestroyOnLoad in editor mode
@@ -36,7 +37,7 @@ namespace DUCK.Tween
 			{
 				DontDestroyOnLoad(gameObject);
 			}
-			return instance = gameObject.AddComponent<DefaultAnimationDriver>();
+			return instance = gameObject.AddComponent<T>();
 		}
 
 		public void Add(Action<float> updateFunction)
@@ -48,10 +49,21 @@ namespace DUCK.Tween
 		{
 			updateList.Remove(updateFunction);
 		}
+	}
 
+	public class UnscaledAnimationDriver : BaseAnimationDriver<UnscaledAnimationDriver>
+	{
 		private void Update()
 		{
-			updateList.Update(Time.unscaledDeltaTime);
+			updateList.Update(Time.unscaledTime);
+		}
+	}
+
+	public class ScaledAnimationDriver : BaseAnimationDriver<UnscaledAnimationDriver>
+	{
+		private void Update()
+		{
+			updateList.Update(Time.deltaTime);
 		}
 	}
 }
