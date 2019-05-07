@@ -55,7 +55,7 @@ namespace DUCK.Tween
 	{
 		private void Update()
 		{
-			updateList.Update(Time.deltaTime);
+			updateList.Update(Time.unscaledDeltaTime);
 		}
 	}
 
