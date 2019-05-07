@@ -9,7 +9,7 @@ namespace DUCK.Tween
 		{
 			get
 			{
-				return animationDriver ?? (animationDriver = TimedAnimation.DefaultDriver ?? DefaultAnimationDriver.Instance);
+				return animationDriver ?? (animationDriver = TimedAnimation.DefaultDriver ?? UnscaledAnimationDriver.Instance);
 			}
 			set
 			{
