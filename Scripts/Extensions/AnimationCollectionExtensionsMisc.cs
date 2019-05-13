@@ -117,5 +117,38 @@ namespace DUCK.Tween.Extensions
 		{
 			return animationCollection.Add(new CustomAnimation<T>(target, customUpdate, from, to, duration, easingFunction));
 		}
+
+		/// <summary>
+		/// Adds a BlendShapeAnimation as a child of this AnimationCollection
+		/// </summary>
+		/// <param name="animationCollection">The target animation collection</param>
+		/// <param name="target">The target SkinnedMeshRenderer</param>
+		/// <param name="blendShapeIndex">The Blend Shape Index</param>
+		/// <param name="from">From value</param>
+		/// <param name="to">To value</param>
+		/// <param name="duration">Duration of the animation</param>
+		/// <param name="easingFunction">The easing function for the interpolation</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection BlendShape(this AnimationCollection animationCollection, SkinnedMeshRenderer target, int blendShapeIndex,
+			float from = 0, float to = 100f, float duration = 1.0f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(target.Blend(blendShapeIndex, from, to, duration, easingFunction));
+		}
+
+		/// <summary>
+		/// Adds a BlendShapeAnimation (in a DelegateAnimation) as a child of this AnimationCollection
+		/// </summary>
+		/// <param name="animationCollection">The target animation collection</param>
+		/// <param name="target">The target SkinnedMeshRenderer</param>
+		/// <param name="blendShapeIndex">The Blend Shape Index</param>
+		/// <param name="to">To value</param>
+		/// <param name="duration">Duration of the animation</param>
+		/// <param name="easingFunction">The easing function for the interpolation</param>
+		/// <returns>Returns this AnimationCollection to comply with fluent interface</returns>
+		public static AnimationCollection BlendShapeTo(this AnimationCollection animationCollection, SkinnedMeshRenderer target, int blendShapeIndex,
+			float to = 100f, float duration = 1.0f, Func<float, float> easingFunction = null)
+		{
+			return animationCollection.Add(target.BlendTo(blendShapeIndex, to, duration, easingFunction));
+		}
 	}
 }
