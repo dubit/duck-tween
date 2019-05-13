@@ -63,28 +63,6 @@ namespace DUCK.Tween
 				throw new Exception("Cannot remove the given function. It was not found in the list");
 			}
 
-			RemoveFunctionAt(index);
-		}
-
-		/// <summary>
-		/// Removes the given update function from the update list if possible
-		/// </summary>
-		/// <param name="updateFunction">The update function to remove from the list</param>
-		/// <returns>True if success</returns>
-		public bool RemoveSilently(Action<float> updateFunction)
-		{
-			var index = updateFunctions.IndexOf(updateFunction);
-			if (index >= 0)
-			{
-				RemoveFunctionAt(index);
-				return true;
-			}
-
-			return false;
-		}
-
-		private void RemoveFunctionAt(int index)
-		{
 			// if we are currently updating we mark it as dead,
 			// otherwise (else) we can remove it straight away
 			if (isUpdating)
