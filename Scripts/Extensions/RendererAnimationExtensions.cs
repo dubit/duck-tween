@@ -209,5 +209,35 @@ namespace DUCK.Tween.Extensions
 				new FloatShaderPropertyAnimation(renderer, shaderPropertyID, renderer.material.GetFloat(shaderPropertyID), to, duration, easingFunction));
 			return animation;
 		}
+
+		/// <summary>
+		/// Creates a new BlendShapeAnimation using this SkinnedMeshRenderer
+		/// </summary>
+		/// <param name="renderer">Target SkinnedMeshRenderer</param>
+		/// <param name="blendShapeIndex">The Blend Shape Index</param>
+		/// <param name="from">From value</param>
+		/// <param name="to">To value</param>
+		/// <param name="duration">Duration of the animation</param>
+		/// <param name="easingFunction">The easing function for the interpolation</param>
+		/// <returns>The BlendShapeAnimation created</returns>
+		public static BlendShapeAnimation Blend(this SkinnedMeshRenderer renderer, int blendShapeIndex, float from = 0f, float to = 100f, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return new BlendShapeAnimation(renderer, blendShapeIndex, from, to, duration, easingFunction);
+		}
+
+		/// <summary>
+		/// Creates a new BlendShapeAnimation (in a DelegateAnimation) using this SkinnedMeshRenderer
+		/// </summary>
+		/// <param name="renderer">Target SkinnedMeshRenderer</param>
+		/// <param name="blendShapeIndex">The Blend Shape Index</param>
+		/// <param name="to">To value</param>
+		/// <param name="duration">Duration of the animation</param>
+		/// <param name="easingFunction">The easing function for the interpolation</param>
+		/// <returns>A DelegateAnimation which contains the created BlendShapeAnimation</returns>
+		public static DelegateAnimation<BlendShapeAnimation> BlendTo(this SkinnedMeshRenderer renderer, int blendShapeIndex, float to, float duration = 1f, Func<float, float> easingFunction = null)
+		{
+			return new DelegateAnimation<BlendShapeAnimation>(() =>
+				new BlendShapeAnimation(renderer, blendShapeIndex, renderer.GetBlendShapeWeight(blendShapeIndex), to, duration, easingFunction));
+		}
 	}
 }
