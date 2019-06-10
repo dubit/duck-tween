@@ -8,7 +8,7 @@
 		/// <summary>
 		/// WaitAnimation only valid when the duration > 0
 		/// </summary>
-		public override bool IsValid { get { return Duration > 0; } }
+		public override bool IsValid => Duration >= 0f;
 
 		/// <summary>
 		/// Creates a new WaitAnimation
