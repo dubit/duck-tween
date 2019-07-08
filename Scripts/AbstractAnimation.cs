@@ -56,6 +56,7 @@ namespace DUCK.Tween
 
 			onCompleteCallback = onComplete;
 			onAbortCallback = onAbort;
+			IsPaused = false;
 			IsPlaying = true;
 		}
 
@@ -76,12 +77,9 @@ namespace DUCK.Tween
 
 			IsLooping = repeat > 0 || repeat == -1;
 
-			Action onRepeatComplete = delegate
+			void RepeatComplete()
 			{
-				if (onRepeat != null)
-				{
-					onRepeat();
-				}
+				onRepeat?.Invoke();
 
 				if (IsLooping)
 				{
@@ -89,13 +87,13 @@ namespace DUCK.Tween
 				}
 				// This will only occur when the user called FastForward().
 				// Abort an animation wouldn't get this delegate called anyway.
-				else if (onAllComplete != null)
+				else
 				{
-					onAllComplete();
+					onAllComplete?.Invoke();
 				}
-			};
+			}
 
-			Play(IsLooping ? onRepeatComplete : onAllComplete, onAbort);
+			Play(IsLooping ? RepeatComplete : onAllComplete, onAbort);
 		}
 
 		/// <summary>
@@ -107,14 +105,11 @@ namespace DUCK.Tween
 			IsLooping = false;
 			IsPaused = false;
 
-			if (onAbortCallback != null)
-			{
-				onAbortCallback();
-			}
+			onAbortCallback?.Invoke();
 		}
 
 		/// <summary>
-		/// Fastforwards the animation to the end and stops it, leaving the state of the object
+		/// Fast forwards the animation to the end and stops it, leaving the state of the object
 		/// </summary>
 		public virtual void FastForward()
 		{
@@ -129,18 +124,21 @@ namespace DUCK.Tween
 		/// </summary>
 		public virtual void Pause()
 		{
+			if (!IsPlaying)
+			{
+				Debug.LogWarning("You paused an animation which isn't playing!");
+			}
 			IsPaused = true;
 		}
 
 		/// <summary>
 		/// Resume the paused animation.
-		/// You should not resume a stopped animation.
 		/// </summary>
 		public virtual void Resume()
 		{
 			if (!IsPlaying)
 			{
-				Debug.LogError("You should not resume an animation which isn't playing!");
+				Debug.LogWarning("You resumed an animation which isn't playing!");
 			}
 			IsPaused = false;
 		}
@@ -149,10 +147,7 @@ namespace DUCK.Tween
 		{
 			IsPlaying = IsLooping;
 
-			if (onCompleteCallback != null)
-			{
-				onCompleteCallback();
-			}
+			onCompleteCallback?.Invoke();
 		}
 	}
 }
