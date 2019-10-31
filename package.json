@@ -1,0 +1,11 @@
+{
+  "name": "com.dubitlimited.duck.tween",
+  "displayName": "Duck Tween",
+  "version": "1.3.1",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dubit/duck-tween/"
+  },
+  "author": "Dubit Limited"
+}
