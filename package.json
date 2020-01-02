@@ -1,0 +1,11 @@
+{
+  "name": "com.dubitlimited.duck.tween",
+  "displayName": "Duck Tween",
+  "version": "1.4.0",
+  "description": "A tween library for unity",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dubit/duck-tween"
+  },
+  "author": "Dubit Limited"
+}
