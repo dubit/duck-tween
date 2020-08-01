@@ -13,7 +13,7 @@ namespace DUCK.Tween
 		public float To { get; set; }
 
 		/// <summary>
-		/// Custom Animation is always true because customUpdate cannot be null
+		/// Custom Animation checks nothing since it's highly customisable
 		/// </summary>
 		public override bool IsValid => true;
 
@@ -47,15 +47,15 @@ namespace DUCK.Tween
 	/// </summary>
 	public class CustomAnimation<T> : TimedAnimation
 	{
-		public T Target { get; }
+		public T Target { get; set; }
 		public float CurrentValue { get; private set; }
 		public float From { get; set; }
 		public float To { get; set; }
 
 		/// <summary>
-		/// Custom Animation is always true because customUpdate cannot be null
+		/// Custom Animation checks nothing since it's highly customisable
 		/// </summary>
-		public override bool IsValid => Target != null;
+		public override bool IsValid => true;
 
 		private readonly Action<T, float> customUpdate;
 
@@ -72,10 +72,6 @@ namespace DUCK.Tween
 		public CustomAnimation(T target, Action<T, float> customUpdate, float from = 0, float to = 1.0f, float duration = 1.0f, Func<float, float> easingFunction = null)
 			: base((GameObject)null, duration, easingFunction)
 		{
-			if (target == null)
-			{
-				throw new ArgumentNullException(nameof(target));
-			}
 			Target = target;
 			this.customUpdate = customUpdate ?? throw new ArgumentNullException(nameof(customUpdate));
 			From = from;
