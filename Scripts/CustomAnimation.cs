@@ -32,7 +32,7 @@ namespace DUCK.Tween
 			: base((GameObject)null, duration, easingFunction)
 		{
 			this.customUpdate = customUpdate ?? throw new ArgumentNullException(nameof(customUpdate));
-			From = from;
+			From = CurrentValue = from;
 			To = to;
 		}
 
@@ -74,7 +74,7 @@ namespace DUCK.Tween
 		{
 			Target = target;
 			this.customUpdate = customUpdate ?? throw new ArgumentNullException(nameof(customUpdate));
-			From = from;
+			From = CurrentValue = from;
 			To = to;
 		}
 
